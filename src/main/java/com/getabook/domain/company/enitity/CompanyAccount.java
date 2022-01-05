@@ -1,10 +1,12 @@
 package com.getabook.domain.company.enitity;
 
+import com.getabook.domain.document.entity.CompanyDocument;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "COMPANY_ACCOUNT")
@@ -24,4 +26,7 @@ public class CompanyAccount {
 
     @OneToOne(mappedBy = "companyAccount")
     private Company company;
+
+    @OneToMany(mappedBy = "companyAccount")
+    private List<CompanyDocument> companyDocuments;
 }
