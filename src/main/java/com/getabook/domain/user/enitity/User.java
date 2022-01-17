@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class User {
 
     @Id
