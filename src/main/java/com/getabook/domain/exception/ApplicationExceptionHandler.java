@@ -16,7 +16,7 @@ public class ApplicationExceptionHandler {
 
     @ExceptionHandler(ApplicationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponseDto handleException(HttpServletRequest request, IllegalArgumentException e) {
+    public ErrorResponseDto handleException(HttpServletRequest request, ApplicationException e) {
         final String exceptionMessage = e.getMessage();
         log.error(request.getMethod() + " " + request.getRequestURL() + " with error: " + exceptionMessage);
         log.error(ExceptionUtils.getStackTrace(e));
