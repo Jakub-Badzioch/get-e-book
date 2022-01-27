@@ -15,24 +15,17 @@ import java.math.BigDecimal;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final CompanyMapper companyMapper;
 
     @Transactional
-    public CompanyDto createCompany(CompanyDto companyDTO) {
-        final Company company = dtoToCompany(companyDTO);
+    public CompanyDto createCompany(CompanyDto companyDto) {
+        final Company company = companyMapper.dtoToCompany(companyDto);
         final CompanyAccount account = CompanyAccount.builder()
                 .company(company)
                 .cashBalance(BigDecimal.ZERO)
                 .build();
         company.setCompanyAccount(account);
         companyRepository.save(company);
-        return companyToDto(company);
-    }
-
-    private Company dtoToCompany(CompanyDto companyDTO) {
-        return Company.builder().name(companyDTO.getName()).build();
-    }
-
-    private CompanyDto companyToDto(Company company) {
-        return CompanyDto.builder().name(company.getName()).build();
+        return companyMapper.companyToDto(company);
     }
 }

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("companies")
+@RequestMapping("company")
 public class CompanyController {
 
     private final CompanyService companyService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CompanyDto register(@RequestBody CompanyDto companyDTO) {
-        return companyService.createCompany(companyDTO);
+    public CompanyDto register(@RequestBody CompanyDto companyDto) {
+        return companyService.createCompany(companyDto);
     }
 }
