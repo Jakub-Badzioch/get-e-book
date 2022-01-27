@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class Company {
 
     @Id
@@ -22,7 +23,7 @@ public class Company {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "company_account_id", referencedColumnName = "id", unique = true)
     private CompanyAccount companyAccount;
 

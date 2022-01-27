@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Builder
 @Entity
 @Table(name = "COMPANY_ACCOUNT")
 @Getter
