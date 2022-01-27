@@ -1,6 +1,5 @@
 package com.getabook.domain.user.dto;
 
-import com.getabook.domain.company.enitity.CompanyRole;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -19,6 +18,5 @@ public class UserDto {
     private String password;
     @Email(message = "Email is invalid.")
     private String email;
-    private CompanyRole companyRole;
 
 }
