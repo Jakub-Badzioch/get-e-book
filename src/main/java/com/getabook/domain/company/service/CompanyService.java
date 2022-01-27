@@ -19,13 +19,17 @@ public class CompanyService {
 
     @Transactional
     public CompanyDto createCompany(CompanyDto companyDto) {
-        final Company company = companyMapper.dtoToCompany(companyDto);
+        final Company company = companyMapper.toEntity(companyDto);
+        createCompanyAccount(company);
+        companyRepository.save(company);
+        return companyMapper.toDto(company);
+    }
+
+    private void createCompanyAccount(Company company) {
         final CompanyAccount account = CompanyAccount.builder()
                 .company(company)
                 .cashBalance(BigDecimal.ZERO)
                 .build();
         company.setCompanyAccount(account);
-        companyRepository.save(company);
-        return companyMapper.companyToDto(company);
     }
 }

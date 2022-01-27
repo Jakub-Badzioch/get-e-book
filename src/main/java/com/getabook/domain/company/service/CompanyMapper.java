@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyMapper {
 
-    public Company dtoToCompany(CompanyDto companyDto) {
+    public Company toEntity(CompanyDto companyDto) {
         return Company.builder()
                 .name(companyDto.getName())
                 .build();
     }
 
-    public CompanyDto companyToDto(Company company) {
+    public CompanyDto toDto(Company company) {
         return CompanyDto.builder()
                 .name(company.getName())
                 .build();
