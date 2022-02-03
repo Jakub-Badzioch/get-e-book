@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "USER")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 public class User {

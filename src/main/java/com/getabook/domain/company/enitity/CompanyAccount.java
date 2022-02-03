@@ -13,6 +13,8 @@ import java.util.List;
 @Table(name = "COMPANY_ACCOUNT")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class CompanyAccount {
 

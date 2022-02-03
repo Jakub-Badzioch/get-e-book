@@ -1,5 +1,6 @@
 package com.getabook.domain.user.service;
 
+import com.getabook.domain.exception.ApplicationException;
 import com.getabook.domain.user.dto.UserDto;
 import com.getabook.domain.user.enitity.User;
 import com.getabook.domain.user.mapper.UserMapper;
@@ -20,5 +21,10 @@ public class UserService {
         final User user = this.userMapper.toEntity(userDto);
         this.userRepository.save(user);
         return this.userMapper.toDto(user);
+    }
+
+    public User getUser(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ApplicationException("User doesn't exist"));
     }
 }

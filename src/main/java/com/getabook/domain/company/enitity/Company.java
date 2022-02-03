@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name = "COMPANY")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 public class Company {
