@@ -27,10 +27,4 @@ public class CompanyController {
     public void createAdministrator(@RequestBody CreateRoleDto createRoleDto) {
         companyRoleService.createCompanyRole(createRoleDto);
     }
-
-
-    /*
-    Tworzenie administratora w firmie, nadawanie użytkownikowi odpowiedniej roli. Użytkownik musi
-    mieć zarejestrowane konto i nie być przypisanym do żadnej firmy. Security: dostęp tylko dla admina serwera.
-    */
 }
