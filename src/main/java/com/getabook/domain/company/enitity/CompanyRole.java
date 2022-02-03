@@ -9,7 +9,10 @@ import javax.persistence.*;
 @Table(name = "COMPANY_ROLE")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder
 public class CompanyRole {
 
     @Id
@@ -25,6 +28,7 @@ public class CompanyRole {
     @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
     private User user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role; // USER albo ADMINISTRATOR
+    private Role role;
 }
