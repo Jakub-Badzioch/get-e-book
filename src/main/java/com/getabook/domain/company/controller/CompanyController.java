@@ -27,12 +27,12 @@ public class CompanyController {
     @PostMapping("/admin")
     @ResponseStatus(HttpStatus.CREATED)
     public void createAdministrator(@RequestBody CreateRoleDto createRoleDto) {
-        companyRoleService.createCompanyRole(createRoleDto);
+        companyRoleService.createAdministrator(createRoleDto);
     }
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody CreateRoleDto createRoleDto) {
-        userService.addUserToCompany(createRoleDto);
+        companyRoleService.createUser(createRoleDto);
     }
 }
