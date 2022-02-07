@@ -11,6 +11,8 @@ import com.getabook.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class CompanyRoleService {
@@ -19,10 +21,12 @@ public class CompanyRoleService {
     private final UserService userService;
     private final CompanyService companyService;
 
+    @Transactional
     public void createAdministrator(CreateRoleDto createRoleDto) {
         createCompanyRole(createRoleDto, Role.ADMINISTRATOR);
     }
 
+    @Transactional
     public void createUser(CreateRoleDto createRoleDto) {
         createCompanyRole(createRoleDto, Role.USER);
     }
