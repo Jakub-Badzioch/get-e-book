@@ -19,7 +19,15 @@ public class CompanyRoleService {
     private final UserService userService;
     private final CompanyService companyService;
 
-    public void createCompanyRole(CreateRoleDto createRoleDto){
+    public void createAdministrator(CreateRoleDto createRoleDto) {
+        createCompanyRole(createRoleDto, Role.ADMINISTRATOR);
+    }
+
+    public void createUser(CreateRoleDto createRoleDto) {
+        createCompanyRole(createRoleDto, Role.USER);
+    }
+
+    private void createCompanyRole(CreateRoleDto createRoleDto, Role role){
         final User user = userService.getUser(createRoleDto.getEmail());
         final Company company = companyService.getCompany(createRoleDto.getCompanyId());
 
@@ -30,7 +38,7 @@ public class CompanyRoleService {
         final CompanyRole administrator = CompanyRole.builder()
                 .user(user)
                 .company(company)
-                .role(Role.ADMINISTRATOR)
+                .role(role)
                 .build();
         companyRoleRepository.save(administrator);
     }
