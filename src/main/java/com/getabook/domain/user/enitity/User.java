@@ -31,4 +31,7 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private CompanyRole companyRole;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private UserAccount userAccount;
 }

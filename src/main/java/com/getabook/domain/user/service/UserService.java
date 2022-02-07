@@ -1,14 +1,15 @@
 package com.getabook.domain.user.service;
 
-import com.getabook.domain.company.repository.CompanyRoleRepository;
-import com.getabook.domain.company.service.CompanyService;
 import com.getabook.domain.exception.ApplicationException;
 import com.getabook.domain.user.dto.UserDto;
 import com.getabook.domain.user.enitity.User;
+import com.getabook.domain.user.enitity.UserAccount;
 import com.getabook.domain.user.mapper.UserMapper;
 import com.getabook.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,12 +18,17 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordValidator passwordValidator;
-    private final CompanyService companyService;
-    private final CompanyRoleRepository companyRoleRepository;
 
+
+    @Transactional
     public UserDto register(UserDto userDto) {
         this.passwordValidator.validate(userDto.getPassword());
         final User user = this.userMapper.toEntity(userDto);
+        final UserAccount userAccount = UserAccount.builder()
+                .user(user)
+                .pointsBalance(0L)
+                .build();
+        user.setUserAccount(userAccount);
         this.userRepository.save(user);
         return this.userMapper.toDto(user);
     }

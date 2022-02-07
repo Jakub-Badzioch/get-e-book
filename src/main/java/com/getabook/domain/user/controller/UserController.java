@@ -1,6 +1,5 @@
 package com.getabook.domain.user.controller;
 
-import com.getabook.domain.company.dto.CreateRoleDto;
 import com.getabook.domain.user.dto.UserDto;
 import com.getabook.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
