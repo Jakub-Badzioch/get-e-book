@@ -19,20 +19,18 @@ public class DocumentService {
 
     @Transactional
     public DocumentDto create(DocumentDto documentDto) {
-        final Document document = Document.builder()
-                .cashPrice(documentDto.getCashPrice())
-                .title(documentDto.getTitle())
-                .build();
+        final Document document = documentMapper.fromDto(documentDto);
         documentRepository.save(document);
         return documentMapper.toDto(document);
     }
 
     @Transactional
     public DocumentDto update(DocumentDto documentDto) {
-        final Document document = documentRepository.findById(
-                documentDto.getId()).orElseThrow(() -> new ApplicationException("There is no document with such id"));
-        document.setCashPrice(documentDto.getCashPrice());
-        document.setTitle(documentDto.getTitle());
+        final boolean exists = documentRepository.existsById(documentDto.getId());
+        if (!exists) {
+            throw new ApplicationException("There is no document with such id");
+        }
+        final Document document = documentMapper.fromDto(documentDto);
         documentRepository.save(document);
         return documentMapper.toDto(document);
     }
