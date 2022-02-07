@@ -1,6 +1,5 @@
 package com.getabook.domain.document.entity;
 
-import com.getabook.domain.company.enitity.CompanyAccount;
 import com.getabook.domain.user.enitity.UserAccount;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
