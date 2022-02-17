@@ -9,17 +9,17 @@ public class DocumentMapper {
 
     public Document fromDto (DocumentDto documentDto) {
         return Document.builder()
-                .cashPrice(documentDto.getCashPrice())
                 .id(documentDto.getId())
                 .title(documentDto.getTitle())
+                .cashPrice(documentDto.getCashPrice())
                 .build();
     }
 
     public DocumentDto toDto(Document document) {
         return DocumentDto.builder()
                 .id(document.getId())
-                .cashPrice(document.getCashPrice())
                 .title(document.getTitle())
+                .cashPrice(document.getCashPrice())
                 .build();
     }
 }

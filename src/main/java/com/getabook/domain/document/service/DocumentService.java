@@ -19,9 +19,10 @@ public class DocumentService {
 
     @Transactional
     public DocumentDto create(DocumentDto documentDto) {
-        final Document document = documentMapper.fromDto(documentDto);
-        documentRepository.save(document);
-        return documentMapper.toDto(document);
+        if (documentDto.getId() == null) {
+            throw new ApplicationException("New document shouldn't have id. " + documentDto);
+        }
+        return this.save(documentDto);
     }
 
     @Transactional
@@ -30,13 +31,18 @@ public class DocumentService {
         if (!exists) {
             throw new ApplicationException("There is no document with such id");
         }
-        final Document document = documentMapper.fromDto(documentDto);
-        documentRepository.save(document);
-        return documentMapper.toDto(document);
+        return this.save(documentDto);
     }
 
     @Transactional
     public void delete(Long id) {
         documentRepository.deleteById(id);
     }
+
+    private DocumentDto save(DocumentDto documentDto) {
+        final Document document = documentMapper.fromDto(documentDto);
+        documentRepository.save(document);
+        return documentMapper.toDto(document);
+    }
+
 }
